@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+    echo "You must set 2 arguments: src_dir dst_dir"
+    exit 1
+fi
+
+SRC=$1
+DST=$2
+
+if [ ! -e $SRC ]; then
+    echo "Not found: $SRC"
+    exit 1
+fi
+
+if [ ! -e $DST ]; then
+    echo "Not found: $DST"
+    exit 1
+fi
+
+FILES="$SRC/*.svg"
+
+for filepath in $FILES; do
+    echo "Convert: $filepath"
+    NAME=`basename $filepath .svg`
+    NAME=`basename $NAME .dio`
+    inkscape -D --export-type=pdf -o $DST/$NAME.pdf $filepath
+done
