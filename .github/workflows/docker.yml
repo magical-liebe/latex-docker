@@ -26,4 +26,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/latex-docker:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.CI_REPOSITORY_NAME }}:latest
